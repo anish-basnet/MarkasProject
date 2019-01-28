@@ -5,7 +5,7 @@ from django.db import models
 class Realtor_Table(models.Model):
     realtor_name=models.CharField(max_length=100);
     realtor_image=models.ImageField();
-    contact_no=models.DecimalField();
+    contact_no=models.CharField(max_length=50);
     mail_address=models.EmailField();
     description=models.CharField(max_length=2000);
 
