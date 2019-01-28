@@ -284,8 +284,8 @@ img {
   background-color: #ffffff; }
 
 .south-load {
-  -webkit-animation: 1500ms linear 0s normal none infinite running south-load;
-  animation: 1500ms linear 0s normal none infinite running south-load;
+  -webkit-animation: 1500ms linear 0s normal none infinite running;
+  animation: 1500ms linear 0s normal none infinite running;
   background: transparent;
   border-color: #ffffff;
   border-top-color: #947054;
