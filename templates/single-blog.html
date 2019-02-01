@@ -27,31 +27,29 @@
                     <div class="single-blog-area">
                         <!-- Post Thumbnail -->
                         <div class="blog-post-thumbnail">
-                            <img src="{% static 'img/blog-img/blog3.jpg'%}" alt="">
+                            <img src="{{ single_blog.image.url }}" alt="">
                         </div>
                         <!-- Post Content -->
                         <div class="post-content">
                             <!-- Date -->
                             <div class="post-date">
-                                <a href="#">March 09, 2018</a>
+                                <a href="#">{{single_blog.published_date}}</a>
                             </div>
                             <!-- Headline -->
-                            <a href="#" class="headline">How to get the best deal for your house</a>
+                            <a href="#" class="headline">{{ single_blog.heading }}</a>
                             <!-- Post Meta -->
                             <div class="post-meta">
-                                <p>By <a href="#">Admin</a> | in <a href="#">Uncategorized</a> | <a href="#">2 Comments</a></p>
+                                <p>By <a href="#">{{ single_blog.published_by }}</a> | in <a href="#">Uncategorized</a></p>
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione quia dolore debitis tenetur laborum neque deleniti quis atque autem, qui blanditiis, ad aspernatur? Consequatur nemo, eveniet blanditiis asperiores ex magni sit libero sint fugiat quibusdam ab eius aperiam, iure facilis neque dolore earum architecto tempore et, quae? Omnis ex suscipit debitis, obcaecati delectus est ab voluptate distinctio voluptas. Deserunt saepe sunt ullam, animi sed vel error consectetur incidunt. Ipsa facere eveniet natus quos ratione, minus quod cum ex, laboriosam eius impedit cupiditate? Dolore, voluptates reiciendis quis incidunt ducimus cumque placeat, similique nostrum quod enim quidem culpa. Facere veniam cum accusantium cumque, explicabo nesciunt repellat unde, quibusdam adipisci error quasi natus, pariatur perspiciatis odit labore eos incidunt? Quidem doloremque atque nisi ea optio odio aspernatur est eius!</p>
-                            <img class="mb-50" src="{% static 'img/bg-img/hero3.jpg'%}" alt="">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia minus in recusandae cumque, laboriosam mollitia inventore nisi autem maiores nostrum ipsa labore beatae amet, dolore ex error fugit sunt aspernatur quidem. Sed laboriosam nihil consectetur facilis aliquid labore necessitatibus nemo dolore? Perspiciatis corrupti consectetur, doloribus aliquid voluptatibus ab atque inventore, est voluptates. Eum veniam hic velit, quia voluptates? Numquam aliquam accusantium hic iste, sequi nisi maiores minus iure eos est unde eum dolore amet suscipit?</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus accusamus accusantium nisi quas tempore quod placeat soluta, quam, ex, pariatur doloremque, quasi ut vitae aspernatur quisquam dolores consequatur deleniti sed perferendis consequuntur. Aut quod, dolorum molestiae veritatis molestias, nemo sit, voluptatibus, quaerat cupiditate magni dignissimos minus repellendus labore.</p>
+                            <p>{{ single_blog.description }}</p>
                         </div>
                     </div>
 
                     <div class="comments-area">
-                        <h5>4 Comments</h5>
+                        <h5>Comments</h5>
                         <ol>
                             <!-- Single Comment Area -->
+                            {% for rav in comment %}
                             <li class="single_comment_area">
                                 <div class="comment-wrapper d-flex">
                                     <!-- Comment Meta -->
@@ -61,50 +59,16 @@
                                     <!-- Comment Content -->
                                     <div class="comment-content">
                                         <div class="comment-meta">
-                                            <a href="#" class="comment-author-name">Maria Williams</a> |
-                                            <a href="#" class="comment-date">Jan 29, 2018</a> |
+                                            <a href="#" class="comment-author-name">{{ rav.comment_by }}</a> |
+                                            <a href="#" class="comment-date">{{ rav.date }}</a> |
                                             <a href="#" class="comment-reply">Reply</a>
                                         </div>
-                                        <p>Consectetur adipiscing elit. Praesent vel tortor facilisis, volutpat nulla placerat, tincidunt mi. Nullam vel orci dui. Su spendisse sit amet laoreet neque. Fusce sagittis suscipit sem a consequat.</p>
-                                    </div>
-                                </div>
-                                <ol class="children">
-                                    <li class="single_comment_area">
-                                        <div class="comment-wrapper d-flex">
-                                            <!-- Comment Meta -->
-                                            <div class="comment-author">
-                                                <img src="{% static 'img/blog-img/c-2.jpg'%}" alt="">
-                                            </div>
-                                            <!-- Comment Content -->
-                                            <div class="comment-content">
-                                                <div class="comment-meta">
-                                                    <a href="#" class="comment-author-name">Maria Williams</a> |
-                                                    <a href="#" class="comment-date">Jan 29, 2018</a> |
-                                                    <a href="#" class="comment-reply">Reply</a>
-                                                </div>
-                                                <p>Consectetur adipiscing elit. Praesent vel tortor facilisis, volutpat nulla placerat, tincidunt mi. Nullam vel orci dui. Su spendisse sit amet laoreet neque. Fusce sagittis suscipit sem a consequat.</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ol>
-                            </li>
-                            <li class="single_comment_area">
-                                <div class="comment-wrapper d-flex">
-                                    <!-- Comment Meta -->
-                                    <div class="comment-author">
-                                        <img src="{% static 'img/blog-img/c-3.jpg'%}" alt="">
-                                    </div>
-                                    <!-- Comment Content -->
-                                    <div class="comment-content">
-                                        <div class="comment-meta">
-                                            <a href="#" class="comment-author-name">Maria Williams</a> |
-                                            <a href="#" class="comment-date">Jan 29, 2018</a> |
-                                            <a href="#" class="comment-reply">Reply</a>
-                                        </div>
-                                        <p>Consectetur adipiscing elit. Praesent vel tortor facilisis, volutpat nulla placerat, tincidunt mi. Nullam vel orci dui. Su spendisse sit amet laoreet neque. Fusce sagittis suscipit sem a consequat.</p>
+                                        <p>{{ rav.message }}</p>
                                     </div>
                                 </div>
                             </li>
+                            {% endfor %}
+
                         </ol>
                     </div>
 
@@ -114,17 +78,18 @@
                             <h5>Leave a reply</h5>
 
                             <!-- Comment Form -->
-                            <form action="#" method="post">
+                            <form method="post">
+                                {% csrf_token %}
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="contact-name" placeholder="Name">
+                                    <input type="text" name="nam" class="form-control" id="contact-nam" placeholder="Name">
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" id="contact-email" placeholder="Email">
+                                    <input type="email" name="email" class="form-control" id="contact-emai" placeholder="Email">
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control" name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+                                    <textarea class="form-control" name="message" name="message" id="messag" cols="30" rows="10" placeholder="Message"></textarea>
                                 </div>
-                                <button type="submit" class="btn south-btn">Submit Reply</button>
+                                <button type="submit" class="btn south-btn" onclick="return validate_replay();">Submit Reply</button>
                             </form>
                         </div>
                     </div>
@@ -252,5 +217,5 @@
     </section>
     <!-- ##### Blog Area End ##### -->
 
-
+<script src="{% static 'js/test.js' %}"></script>
 {% endblock %}

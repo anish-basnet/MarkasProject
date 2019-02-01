@@ -26,76 +26,33 @@
                 <div class="col-12 col-lg-8">
                    
                     <!-- Single Blog Area -->
+                    {% for x in blog_list %}
                     <div class="single-blog-area mb-50">
                         <!-- Post Thumbnail -->
                         <div class="blog-post-thumbnail">
-                            <img src="{% static 'img/blog-img/blog1.jpg'%}" alt="">
+                            <img src="{{ x.image.url }}" alt="">
                         </div>
                         <!-- Post Content -->
                         <div class="post-content">
                             <!-- Date -->
                             <div class="post-date">
-                                <a href="#">March 09, 2018</a>
+                                <a href="#">{{x.published_date}}</a>
                             </div>
                             <!-- Headline -->
-                            <a href="#" class="headline">How to get the best deal for your house</a>
+                            <a href="#" class="headline">{{ x.heading }}</a>
                             <!-- Post Meta -->
                             <div class="post-meta">
-                                <p>By <a href="#">Admin</a> | in <a href="#">Uncategorized</a> | <a href="#">2 Comments</a></p>
+                                <p>By <a href="#">{{ x.published_by }}</a> | in <a href="#">Uncategorized</a> </p>
                             </div>
-                            <p>Etiam nec odio vestibulum est mattis effic iturut magna. Pellentesque sit amet tellus blandit. Etiam nec odiomattis effic iturut magna. Pellentesque sit am et tellus blandit. Etiam nec odio vestibul. Etiam nec odio vestibulum est mat tis effic iturut magna. Curabitur rhoncus auctor eleifend.</p>
+                            <p>{{ x.description }}</p>
                             <!-- Read More btn -->
-                            <a href="#" class="btn south-btn">Read More</a>
+                            <a href="{% url 'HomePage:blog_name_with_single' x.pk %}" class="btn south-btn">Read More</a>
                         </div>
                     </div>
+                    {% endfor %}
                    
-                    <!-- Single Blog Area -->
-                    <div class="single-blog-area mb-50">
-                        <!-- Post Thumbnail -->
-                        <div class="blog-post-thumbnail">
-                            <img src="{% static 'img/blog-img/blog2.jpg'%}" alt="">
-                        </div>
-                        <!-- Post Content -->
-                        <div class="post-content">
-                            <!-- Date -->
-                            <div class="post-date">
-                                <a href="#">March 09, 2018</a>
-                            </div>
-                            <!-- Headline -->
-                            <a href="#" class="headline">How to get the best deal for your house</a>
-                            <!-- Post Meta -->
-                            <div class="post-meta">
-                                <p>By <a href="#">Admin</a> | in <a href="#">Uncategorized</a> | <a href="#">2 Comments</a></p>
-                            </div>
-                            <p>Etiam nec odio vestibulum est mattis effic iturut magna. Pellentesque sit amet tellus blandit. Etiam nec odiomattis effic iturut magna. Pellentesque sit am et tellus blandit. Etiam nec odio vestibul. Etiam nec odio vestibulum est mat tis effic iturut magna. Curabitur rhoncus auctor eleifend.</p>
-                            <!-- Read More btn -->
-                            <a href="#" class="btn south-btn">Read More</a>
-                        </div>
-                    </div>
-                   
-                    <!-- Single Blog Area -->
-                    <div class="single-blog-area mb-50">
-                        <!-- Post Thumbnail -->
-                        <div class="blog-post-thumbnail">
-                            <img src="{% static 'img/blog-img/blog3.jpg'%}" alt="">
-                        </div>
-                        <!-- Post Content -->
-                        <div class="post-content">
-                            <!-- Date -->
-                            <div class="post-date">
-                                <a href="#">March 09, 2018</a>
-                            </div>
-                            <!-- Headline -->
-                            <a href="#" class="headline">How to get the best deal for your house</a>
-                            <!-- Post Meta -->
-                            <div class="post-meta">
-                                <p>By <a href="#">Admin</a> | in <a href="#">Uncategorized</a> | <a href="#">2 Comments</a></p>
-                            </div>
-                            <p>Etiam nec odio vestibulum est mattis effic iturut magna. Pellentesque sit amet tellus blandit. Etiam nec odiomattis effic iturut magna. Pellentesque sit am et tellus blandit. Etiam nec odio vestibul. Etiam nec odio vestibulum est mat tis effic iturut magna. Curabitur rhoncus auctor eleifend.</p>
-                            <!-- Read More btn -->
-                            <a href="#" class="btn south-btn">Read More</a>
-                        </div>
-                    </div>
+
+
                 </div>
 
                 <div class="col-12 col-lg-4">
