@@ -9,15 +9,90 @@ def main_index(request):
     total=Realtor_Table.objects.all();
     testimony=Testimony_Table.objects.all();
     val=random.choice(total);
+    overall_value=[];
+    if(request.method=='POST'):
+        keyword=request.POST['input'];
+        city=request.POST['city'];
+        catagory=request.POST['catagory'];
+        discount=request.POST['discount'];
+        garage=request.POST['garage'];
+        bathroom=request.POST['bathroom'];
+
+
+        if(city=="All Cities"):
+            city="";
+        if ( (catagory == "All Catagories")):
+            catagory="";
+        if ((discount == "All Offers")):
+            discount=0;
+        if ( (garage == "Garage")):
+            garage=0;
+        if ( (bathroom == "Bathrooms")):
+            bathroom=0;
+        overall_value=Property_Table.objects.filter(property_heading__startswith=keyword,city_located__startswith=city,status__startswith=catagory,discount_offered__gte=discount
+                                                    ,num_garage__gte=garage,num_bathroom__gte=bathroom);
+
+        return render(request,'listings.html',context={'property_list':overall_value})
     return render(request,'index.html',context={'selected_realtor':val,'testimony_list':testimony,'property_list':property});
+
 
 
 def about_us(request):
     val=Realtor_Table.objects.all();
-    return render(request,'about-us.html',context={'realtor_list':val});
+    property = Property_Table.objects.all();
+    property = property[0:6];
+    if (request.method == 'POST'):
+        keyword = request.POST['input'];
+        city = request.POST['city'];
+        catagory = request.POST['catagory'];
+        discount = request.POST['discount'];
+        garage = request.POST['garage'];
+        bathroom = request.POST['bathroom'];
+
+        if (city == "All Cities"):
+            city = "";
+        if ((catagory == "All Catagories")):
+            catagory = "";
+        if ((discount == "All Offers")):
+            discount = 0;
+        if ((garage == "Garage")):
+            garage = 0;
+        if ((bathroom == "Bathrooms")):
+            bathroom = 0;
+        overall_value = Property_Table.objects.filter(property_heading__startswith=keyword,
+                                                      city_located__startswith=city, status__startswith=catagory,
+                                                      discount_offered__gte=discount
+                                                      , num_garage__gte=garage, num_bathroom__gte=bathroom);
+
+        return render(request, 'listings.html', context={'property_list': overall_value})
+    return render(request,'about-us.html',context={'realtor_list':val,'property_list':property});
 
 def listing(request):
     property = Property_Table.objects.all();
+    if (request.method == 'POST'):
+        keyword = request.POST['input'];
+        city = request.POST['city'];
+        catagory = request.POST['catagory'];
+        discount = request.POST['discount'];
+        garage = request.POST['garage'];
+        bathroom = request.POST['bathroom'];
+
+        if (city == "All Cities"):
+            city = "";
+        if ((catagory == "All Catagories")):
+            catagory = "";
+        if ((discount == "All Offers")):
+            discount = 0;
+        if ((garage == "Garage")):
+            garage = 0;
+        if ((bathroom == "Bathrooms")):
+            bathroom = 0;
+        overall_value = Property_Table.objects.filter(property_heading__startswith=keyword,
+                                                      city_located__startswith=city, status__startswith=catagory,
+                                                      discount_offered__gte=discount
+                                                      , num_garage__gte=garage, num_bathroom__gte=bathroom);
+
+        return render(request, 'listings.html', context={'property_list': overall_value})
     return render(request,'listings.html',context={'property_list':property});
 
 def contact(request):
@@ -31,13 +106,15 @@ def contact(request):
     return render(request,'contact.html');
 
 def blog(request):
+    property = Property_Table.objects.all();
+    property = property[0:6];
     blg=Blog_Table.objects.all();
     for x in blg:
         if(x.description.__len__()<=500):
             x.description=x.description;
         else:
             x.description=x.description[0:500];
-    return render(request,'blog.html',context={'blog_list':blg});
+    return render(request,'blog.html',context={'blog_list':blg,'property_list':property});
 
 def blog_single_display(request,pk):
     full_blg=Blog_Table.objects.get(pk=pk);

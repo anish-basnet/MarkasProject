@@ -59,6 +59,7 @@
                         </div>
                         <!-- Search Form -->
                         <form action="#" method="post" id="advanceSearch">
+                            {% csrf_token %}
                             <div class="row">
 
                                 <div class="col-12 col-md-4 col-lg-3">
@@ -69,93 +70,64 @@
 
                                 <div class="col-12 col-md-4 col-lg-3">
                                     <div class="form-group">
-                                        <select class="form-control" id="cities">
+                                        <select class="form-control" id="cities" name="city">
                                             <option>All Cities</option>
-                                            <option>Kathmandu</option>
-                                            <option>Bhaktapur</option>
-                                            <option>Lalitpur</option>
-
+                                            <option value="Kathmandu">Kathmandu</option>
+                                            <option value="Bhaktapur">Bhaktapur</option>
+                                            <option value="Lalitpur">Lalitpur</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="col-12 col-md-4 col-lg-3">
                                     <div class="form-group">
-                                        <select class="form-control" id="catagories">
+                                        <select class="form-control" id="catagories" name="catagory">
                                             <option>All Catagories</option>
-                                            <option>Sale</option>
-                                            <option>Rent</option>
+                                            <option value="Sale">Sale</option>
+                                            <option value="Rent">Rent</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="col-12 col-md-4 col-lg-3">
                                     <div class="form-group">
-                                        <select class="form-control" id="offers">
+                                        <select class="form-control" id="offers" name="discount">
                                             <option>All Offers</option>
-                                            <option>100% OFF</option>
-                                            <option>75% OFF</option>
-                                            <option>50% OFF</option>
-                                            <option>25% OFF</option>
-                                            <option>10% OFF</option>
+                                            <option value="75">75% OFF</option>
+                                            <option value="50">50% OFF</option>
+                                            <option value="25">25% OFF</option>
+                                            <option value="10">10% OFF</option>
                                         </select>
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-md-4 col-xl-3">
+
+
+                                <div class="col-12 col-md-4 col-xl-2">
                                     <div class="form-group">
-                                        <select class="form-control" id="listings">
-                                            <option>All Listings</option>
-                                            <option>Listings 1</option>
-                                            <option>Listings 2</option>
-                                            <option>Listings 3</option>
-                                            <option>Listings 4</option>
-                                            <option>Listings 5</option>
+                                        <select class="form-control" id="bedrooms" name="garage">
+                                            <option>Garage</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5+</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="col-12 col-md-4 col-xl-2">
                                     <div class="form-group">
-                                        <select class="form-control" id="bedrooms">
-                                            <option>Bedrooms</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5+</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-12 col-md-4 col-xl-2">
-                                    <div class="form-group">
-                                        <select class="form-control" id="bathrooms">
+                                        <select class="form-control" id="bathrooms" name="bathroom">
                                             <option>Bathrooms</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5+</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5+</option>
                                         </select>
                                     </div>
                                 </div>
-
-                                <div class="col-12 col-md-8 col-lg-12 col-xl-5 d-flex">
-                                    <!-- Space Range -->
-                                    <div class="slider-range">
-                                        <div data-min="120" data-max="820" data-unit=" sq. ft" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="120" data-value-max="820">
-                                            <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
-                                            <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                                            <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                                        </div>
-                                        <div class="range">120 sq. ft - 820 sq. ft</div>
-                                    </div>
-
-
-                                </div>
-
-
 
                                 <div class="col-12 d-flex justify-content-between align-items-end">
                                     <!-- More Filter -->

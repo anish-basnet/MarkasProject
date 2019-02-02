@@ -30,6 +30,7 @@
                         </div>
                         <!-- Search Form -->
                         <form action="#" method="post" id="advanceSearch">
+                            {% csrf_token %}
                             <div class="row">
 
                                 <div class="col-12 col-md-4 col-lg-3">
@@ -40,93 +41,64 @@
 
                                 <div class="col-12 col-md-4 col-lg-3">
                                     <div class="form-group">
-                                        <select class="form-control" id="cities">
+                                        <select class="form-control" id="cities" name="city">
                                             <option>All Cities</option>
-                                            <option>Kathmandu</option>
-                                            <option>Bhaktapur</option>
-                                            <option>Lalitpur</option>
-
+                                            <option value="Kathmandu">Kathmandu</option>
+                                            <option value="Bhaktapur">Bhaktapur</option>
+                                            <option value="Lalitpur">Lalitpur</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="col-12 col-md-4 col-lg-3">
                                     <div class="form-group">
-                                        <select class="form-control" id="catagories">
+                                        <select class="form-control" id="catagories" name="catagory">
                                             <option>All Catagories</option>
-                                            <option>Sale</option>
-                                            <option>Rent</option>
+                                            <option value="Sale">Sale</option>
+                                            <option value="Rent">Rent</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="col-12 col-md-4 col-lg-3">
                                     <div class="form-group">
-                                        <select class="form-control" id="offers">
+                                        <select class="form-control" id="offers" name="discount">
                                             <option>All Offers</option>
-                                            <option>100% OFF</option>
-                                            <option>75% OFF</option>
-                                            <option>50% OFF</option>
-                                            <option>25% OFF</option>
-                                            <option>10% OFF</option>
+                                            <option value="75">75% OFF</option>
+                                            <option value="50">50% OFF</option>
+                                            <option value="25">25% OFF</option>
+                                            <option value="10">10% OFF</option>
                                         </select>
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-md-4 col-xl-3">
+
+
+                                <div class="col-12 col-md-4 col-xl-2">
                                     <div class="form-group">
-                                        <select class="form-control" id="listings">
-                                            <option>All Listings</option>
-                                            <option>Listings 1</option>
-                                            <option>Listings 2</option>
-                                            <option>Listings 3</option>
-                                            <option>Listings 4</option>
-                                            <option>Listings 5</option>
+                                        <select class="form-control" id="bedrooms" name="garage">
+                                            <option>Garage</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5+</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="col-12 col-md-4 col-xl-2">
                                     <div class="form-group">
-                                        <select class="form-control" id="bedrooms">
-                                            <option>Bedrooms</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5+</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-12 col-md-4 col-xl-2">
-                                    <div class="form-group">
-                                        <select class="form-control" id="bathrooms">
+                                        <select class="form-control" id="bathrooms" name="bathroom">
                                             <option>Bathrooms</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5+</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5+</option>
                                         </select>
                                     </div>
                                 </div>
-
-                                <div class="col-12 col-md-8 col-lg-12 col-xl-5 d-flex">
-                                    <!-- Space Range -->
-                                    <div class="slider-range">
-                                        <div data-min="120" data-max="820" data-unit=" sq. ft" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="120" data-value-max="820">
-                                            <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
-                                            <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                                            <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                                        </div>
-                                        <div class="range">120 sq. ft - 820 sq. ft</div>
-                                    </div>
-
-
-                                </div>
-
-
 
                                 <div class="col-12 d-flex justify-content-between align-items-end">
                                     <!-- More Filter -->
@@ -172,156 +144,44 @@
                     <div class="featured-properties-slides owl-carousel wow fadeInUp" data-wow-delay="350ms">
 
                         <!-- Single Slide -->
+                        {% for avn in property_list %}
                         <div class="single-featured-property">
                             <!-- Property Thumbnail -->
                             <div class="property-thumb">
-                                <img src="{% static 'img/bg-img/feature1.jpg'%}" alt="">
+                                <img src="{{ avn.property_image.url }}" alt="">
 
                                 <div class="tag">
-                                    <span>For Sale</span>
+                                    <span>For {{ avn.status }}</span>
                                 </div>
                                 <div class="list-price">
-                                    <p>$945 679</p>
+                                    <p>Rs. {{ avn.price }}</p>
                                 </div>
                             </div>
                             <!-- Property Content -->
                             <div class="property-content">
-                                <h5>Villa in Los Angeles</h5>
-                                <p class="location"><img src="{% static 'img/icons/location.png'%}" alt="">Upper Road 3411, no.34 CA</p>
-                                <p>Integer nec bibendum lacus. Suspendisse dictum enim sit amet libero malesuada.</p>
+                                <h5>{{ avn.property_heading }}</h5>
+                                <p class="location"><img src="{% static 'img/icons/location.png'%}" alt="">{{ avn.full_address }}</p>
+                                <p>{{ avn.facilities }}</p>
                                 <div class="property-meta-data d-flex align-items-end justify-content-between">
                                     <div class="new-tag">
                                         <img src="{% static 'img/icons/new.png'%}" alt="">
                                     </div>
                                     <div class="bathroom">
                                         <img src="{% static 'img/icons/bathtub.png'%}" alt="">
-                                        <span>2</span>
+                                        <span>{{ avn.num_bathroom }}</span>
                                     </div>
                                     <div class="garage">
                                         <img src="{% static 'img/icons/garage.png'%}" alt="">
-                                        <span>2</span>
+                                        <span>{{ avn.num_garage }}</span>
                                     </div>
                                     <div class="space">
                                         <img src="{% static 'img/icons/space.png'%}" alt="">
-                                        <span>120 sq ft</span>
+                                        <span>{{ avn.tot_area_space }} sq ft</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Single Slide -->
-                        <div class="single-featured-property">
-                            <!-- Property Thumbnail -->
-                            <div class="property-thumb">
-                                <img src="{% static 'img/bg-img/feature2.jpg'%}" alt="">
-
-                                <div class="tag">
-                                    <span>For Sale</span>
-                                </div>
-                                <div class="list-price">
-                                    <p>$945 679</p>
-                                </div>
-                            </div>
-                            <!-- Property Content -->
-                            <div class="property-content">
-                                <h5>Town House in Los Angeles</h5>
-                                <p class="location"><img src="{% static 'img/icons/location.png'%}" alt="">Upper Road 3411, no.34 CA</p>
-                                <p>Integer nec bibendum lacus. Suspendisse dictum enim sit amet libero malesuada.</p>
-                                <div class="property-meta-data d-flex align-items-end justify-content-between">
-                                    <div class="new-tag">
-                                        <img src="{% static 'img/icons/new.png'%}" alt="">
-                                    </div>
-                                    <div class="bathroom">
-                                        <img src="{% static 'img/icons/bathtub.png'%}" alt="">
-                                        <span>2</span>
-                                    </div>
-                                    <div class="garage">
-                                        <img src="{% static 'img/icons/garage.png'%}" alt="">
-                                        <span>2</span>
-                                    </div>
-                                    <div class="space">
-                                        <img src="{% static 'img/icons/space.png'%}" alt="">
-                                        <span>120 sq ft</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Slide -->
-                        <div class="single-featured-property">
-                            <!-- Property Thumbnail -->
-                            <div class="property-thumb">
-                                <img src="{% static 'img/bg-img/feature3.jpg'%}" alt="">
-
-                                <div class="tag">
-                                    <span>For Sale</span>
-                                </div>
-                                <div class="list-price">
-                                    <p>$945 679</p>
-                                </div>
-                            </div>
-                            <!-- Property Content -->
-                            <div class="property-content">
-                                <h5>Villa in Los Angeles</h5>
-                                <p class="location"><img src="{% static 'img/icons/location.png'%}" alt="">Upper Road 3411, no.34 CA</p>
-                                <p>Integer nec bibendum lacus. Suspendisse dictum enim sit amet libero malesuada.</p>
-                                <div class="property-meta-data d-flex align-items-end justify-content-between">
-                                    <div class="new-tag">
-                                        <img src="{% static 'img/icons/new.png'%}" alt="">
-                                    </div>
-                                    <div class="bathroom">
-                                        <img src="{% static 'img/icons/bathtub.png'%}" alt="">
-                                        <span>2</span>
-                                    </div>
-                                    <div class="garage">
-                                        <img src="{% static 'img/icons/garage.png'%}" alt="">
-                                        <span>2</span>
-                                    </div>
-                                    <div class="space">
-                                        <img src="{% static 'img/icons/space.png'%}" alt="">
-                                        <span>120 sq ft</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Slide -->
-                        <div class="single-featured-property">
-                            <!-- Property Thumbnail -->
-                            <div class="property-thumb">
-                                <img src="{% static 'img/bg-img/feature4.jpg'%}" alt="">
-
-                                <div class="tag">
-                                    <span>For Sale</span>
-                                </div>
-                                <div class="list-price">
-                                    <p>$945 679</p>
-                                </div>
-                            </div>
-                            <!-- Property Content -->
-                            <div class="property-content">
-                                <h5>Town House in Los Angeles</h5>
-                                <p class="location"><img src="{% static 'img/icons/location.png'%}" alt="">Upper Road 3411, no.34 CA</p>
-                                <p>Integer nec bibendum lacus. Suspendisse dictum enim sit amet libero malesuada.</p>
-                                <div class="property-meta-data d-flex align-items-end justify-content-between">
-                                    <div class="new-tag">
-                                        <img src="{% static 'img/icons/new.png'%}" alt="">
-                                    </div>
-                                    <div class="bathroom">
-                                        <img src="{% static 'img/icons/bathtub.png'%}" alt="">
-                                        <span>2</span>
-                                    </div>
-                                    <div class="garage">
-                                        <img src="{% static 'img/icons/garage.png'%}" alt="">
-                                        <span>2</span>
-                                    </div>
-                                    <div class="space">
-                                        <img src="{% static 'img/icons/space.png'%}" alt="">
-                                        <span>120 sq ft</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
